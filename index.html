@@ -10108,8 +10108,8 @@ Error message and password prompt
 <div created="20210720030436633" modified="20210720030436633" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20210720030431601" modified="20210720093022871" title="$:/state/sidebar">
-<pre>yes</pre>
+<div created="20210720030431601" modified="20210720093703903" title="$:/state/sidebar">
+<pre>no</pre>
 </div>
 <div created="20210720030350409" modified="20210720030416513" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
@@ -10241,8 +10241,9 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20210720030140077" modified="20210720093407513" tags="" title="对象的创建" type="text/vnd.tiddlywiki">
+<div created="20210720030140077" modified="20210720094914739" tags="" title="对象的创建" type="text/vnd.tiddlywiki">
 <pre>! new 指令
+!! ''虚拟机的视角''
 #类加载检查
 ## 检查指令的参数是否在常量池里定位到一个类的符号引用
 ## 检测该符号引用代表的类是否被加载，解析，初始化
@@ -10271,6 +10272,10 @@ Error message and password prompt
 # 对对象进行必要的设置
 #&gt;Java虚拟机还要对对象进行必要的设置，例如这个对象是哪个类的实例、如何才能找到类的元数据信息、对象的哈希码（实际上对象的哈希码会延后到真正调用Object::hashCode()方法时才计算）、对象的GC分代年龄等信息。这些信息存放在对象的对象头（Object Header）之中。根据虚拟机当前运行状态的不同，如是否启用偏向锁等，对象头会有不同的设置方式
 
+!! ''java 程序员视角''
+
+
+&gt;但是从Java程序的视角看来，对象创建才刚刚开始——构造函数，即Class文件中的&lt;init&gt;()方法还没有执行，所有的字段都为默认的零值，对象需要的其他资源和状态信息也还没有按照预定的意图构造好。一般来说（由字节码流中new指令后面是否跟随invokespecial指令所决定，Java编译器会在遇到new关键字的地方同时生成这两条字节码指令，但如果直接通过其他方式产生的则不一定如此），new指令之后会接着执行&lt;init&gt;()方法，按照程序员的意愿对对象进行初始化，这样一个真正可用的对象才算完全被构造出来
 </pre>
 </div>
 
