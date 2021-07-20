@@ -10083,7 +10083,7 @@ Error message and password prompt
 <div created="20210720030436633" modified="20210720030436633" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20210720030431601" modified="20210720085405207" title="$:/state/sidebar">
+<div created="20210720030431601" modified="20210720091202667" title="$:/state/sidebar">
 <pre>no</pre>
 </div>
 <div created="20210720030350409" modified="20210720030416513" title="$:/state/tab--1963855381">
@@ -10104,7 +10104,7 @@ Error message and password prompt
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
 </div>
-<div created="20210720085043786" list="对象的创建 $:/ControlPanel GettingStarted" modified="20210720085353514" title="$:/StoryList">
+<div created="20210720091016429" list="对象的创建" modified="20210720091016429" title="$:/StoryList">
 <pre></pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-priority="0" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.23">
@@ -10216,15 +10216,21 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20210720030140077" modified="20210720090704542" tags="" title="对象的创建" type="text/vnd.tiddlywiki">
-<pre>
-! new 指令
+<div created="20210720030140077" modified="20210720091419859" tags="" title="对象的创建" type="text/vnd.tiddlywiki">
+<pre>! new 指令
 #类加载检查
 ## 检查指令的参数是否在常量池里定位到一个类的符号引用
 ## 检测该符号引用代表的类是否被加载，解析，初始化
 
 #类加载检查
 #&gt;对象所需内存的大小在类加载完成后便可完全确定，为对象分配空间的任务实际上便等同于把一块确定大小的内存块从Java堆中划分出来
+
+## 指针碰撞(''Bump The Pointer'')
+##&gt;假设Java堆中内存是绝对规整的，所有被使用过的内存都被放在一边，空闲的内存被放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间方向挪动一段与对象大小相等的距离
+## 空闲列表(''Free List'')
+##&gt;假设Java堆中内存是绝对规整的，所有被使用过的内存都被放在一边，空闲的内存被放在另一边，中间放着一个指针作为分界点的指示器，那所分配内存就仅仅是把那个指针向空闲空间方向挪动一段与对象大小相等的距离
+
+#&gt;选择哪种分配方式由Java堆是否规整决定，而Java堆是否规整又由所采用的垃圾收集器是否带有空间压缩整理（Compact）的能力决定。因此，当使用Serial、ParNew等带压缩整理过程的收集器时，系统采用的分配算法是指针碰撞，既简单又高效；而当使用CMS这种基于清除（Sweep）算法的收集器时，理论上 [1] 就只能采用较为复杂的空闲列表来分配内存
 </pre>
 </div>
 
